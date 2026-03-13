@@ -1,0 +1,5 @@
+# Agent memory files contain personal/sensitive information
+.claude/agent-memory/
+
+# OS
+.DS_Store
