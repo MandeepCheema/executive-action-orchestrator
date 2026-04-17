@@ -35,23 +35,37 @@ This agent uses the following MCP servers (configured in Claude Code):
 
 ## Installation
 
-1. Clone this repo:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/executive-action-orchestrator.git
-   ```
+No GitHub account required. Pick whichever method suits you.
 
-2. Copy the agent files into your Claude agents directory:
-   ```bash
-   cp .claude/agents/*.md ~/.claude/agents/
-   ```
+### Option 1 — curl (quickest, no git needed)
 
-3. Make sure you have the required MCP servers configured in your Claude Code settings (`~/.claude/settings.json` or via `claude mcp add`).
+```bash
+mkdir -p ~/.claude/agents
 
-4. Create the memory directory (the agent will populate it over time):
-   ```bash
-   mkdir -p ~/.claude/agent-memory/executive-action-orchestrator
-   mkdir -p ~/.claude/agent-memory/executive-action-orchestrator-sonnet
-   ```
+curl -o ~/.claude/agents/executive-action-orchestrator.md \
+  https://raw.githubusercontent.com/MandeepCheema/executive-action-orchestrator/main/executive-action-orchestrator.md
+
+curl -o ~/.claude/agents/executive-action-orchestrator-sonnet.md \
+  https://raw.githubusercontent.com/MandeepCheema/executive-action-orchestrator/main/executive-action-orchestrator-sonnet.md
+```
+
+### Option 2 — git clone
+
+```bash
+git clone https://github.com/MandeepCheema/executive-action-orchestrator.git
+cp executive-action-orchestrator/*.md ~/.claude/agents/
+```
+
+### After installing (both options)
+
+Create the memory directories the agent uses to learn your preferences over time:
+
+```bash
+mkdir -p ~/.claude/agent-memory/executive-action-orchestrator
+mkdir -p ~/.claude/agent-memory/executive-action-orchestrator-sonnet
+```
+
+Make sure you have the required MCP servers configured in your Claude Code settings (`~/.claude/settings.json` or via `claude mcp add`).
 
 ## Usage
 
@@ -83,6 +97,7 @@ Claude will automatically route these to the agent.
 The agent produces a structured briefing:
 
 - **✅ Actions Taken** — drafts created, where to find them, why they matter
+- **👁️ Slack Awareness** — org announcements, leadership updates, reorgs, departures, deal signals, and anything that changes your context — even if no reply is needed
 - **⚠️ Items Requiring Your Input** — what needs your judgment, recommended next step, urgency
 - **📋 Summary Stats** — signals reviewed, drafts created, items needing attention
 
